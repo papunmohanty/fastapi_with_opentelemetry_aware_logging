@@ -1,4 +1,4 @@
-# Roll Dice with OpenTelemetry-Aware Logging
+# A Sample FastAPI App with OpenTelemetry-Aware Logging
 
 Welcome to the `roll-dice` sample FastAPI repository. This project demonstrates how to build a lightweight Python app that:
 

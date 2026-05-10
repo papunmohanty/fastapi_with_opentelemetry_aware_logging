@@ -3,8 +3,8 @@ install-all: install otel-init
 install:
 	@echo "\e[1;34mInstalling package dependencies...\e[0m"
 	uv sync
-	.venv/bin/python -m ensurepip --upgrade  # OTEL required `pip` to be installed
-	.venv/bin/python -m pip install --upgrade pip  # Opgrading the `pip` just in case
+	.venv/bin/python -m ensurepip --upgrade        # OTEL required `pip` to be installed
+	.venv/bin/python -m pip install --upgrade pip  # Upgrading the `pip` just in case
 
 otel-init:
 	@echo "\e[1;34mInitializing the OTEL configuration for the app...\e[0m"
@@ -22,7 +22,7 @@ otel-init:
 
 # Below command, instruments OTEL logs in the Jaeger UI instead of the local terminal
 run-app: # Run the FastAPI Service with OTEL exporter enabled, which instrument logs
-	.venv/bin/opentelemetry-instrument --service_name roll.dice2 .venv/bin/uvicorn main:app
+	.venv/bin/opentelemetry-instrument --service_name roll.dice5 .venv/bin/uvicorn main:app
 
 docker-run:  # Run Jaeger using docker command
 	docker run --rm \

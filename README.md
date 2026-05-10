@@ -84,7 +84,7 @@ Then each log call begins a span named after the log level, e.g. `info` or `warn
 
 ---
 
-## 🧠 Workflow and call flow
+## 🎏 Workflow and call flow
 
 ### Application call flow
 

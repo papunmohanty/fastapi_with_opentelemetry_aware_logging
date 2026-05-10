@@ -177,6 +177,7 @@ async def roll_dice():
 
 def roll():
     result = randint(1, 6)
+    #👇 This is how we can add logger along with necessary span for OTEL
     logger.info(
         "Rolled dice value %s",
         result,

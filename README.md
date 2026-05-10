@@ -1,6 +1,6 @@
 # A Sample FastAPI App with OpenTelemetry-Aware Logging
 
-Welcome to the `roll-dice` sample FastAPI repository. This project demonstrates how to build a lightweight Python app that:
+Welcome to this sample FastAPI repository. This project demonstrates how to build a lightweight Python app that:
 
 - uses a custom logging wrapper for normal `logger.info(...)` / `logger.error(...)`
 - integrates OpenTelemetry trace context into log output

@@ -164,9 +164,9 @@ from fastapi import FastAPI
 from random import randint
 import copy
 
-from otel_logger import get_logger  # 👈 NEEDED IMORT for OTEL logging
+from otel_logger import get_logger  # 👈 NEEDED import for OTEL logging
 
-logger = get_logger("diceroller")   # 👈 Instantiating logger, also enabling OTEL instrumantation
+logger = get_logger("diceroller")   # 👈 instantiating logger which include OTEL instrumantation
 app = FastAPI()
 
 @app.get("/rolldice")

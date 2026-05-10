@@ -90,28 +90,28 @@ Then each log call begins a span named after the log level, e.g. `info` or `warn
 
 ```mermaid
 flowchart LR
-    A[Client request] --> B[/rolldice endpoint]
-    B --> C[roll_dice()]
-    C --> D[loop 15 times]
-    D --> E[roll() called]
-    E --> F[logger.info(..., span_name="roll", span_attributes={...})]
-    F --> G[span created & trace context attached]
-    G --> H[log record enriched with trace_id/span_id]
-    H --> I[response returned]
+    A[Client Request] --> B[Endpoint]
+    B --> C[Function Call]
+    C --> D[Loop]
+    D --> E[Roll Call]
+    E --> F[Log Info]
+    F --> G[Span Created]
+    G --> H[Context Added]
+    H --> I[Response]
 ```
 
 ### Logging and tracing flow
 
 ```mermaid
 flowchart TD
-    A[logger.info()] --> B{span_name passed?}
-    B -- Yes --> C[start span via OpenTelemetry tracer]
-    B -- No --> D{auto_start_spans enabled?}
-    D -- Yes --> C
-    D -- No --> E[log without span]
-    C --> F[execute log within active span]
-    F --> G[TraceContextFilter adds trace_id/span_id]
-    G --> H[formatted log output]
+    A[Log Call] --> B{Span Name?}
+    B -->|Yes| C[Start Span]
+    B -->|No| D{Auto Spans?}
+    D -->|Yes| C
+    D -->|No| E[Log Only]
+    C --> F[Execute in Span]
+    F --> G[Add IDs]
+    G --> H[Output]
     E --> H
 ```
 

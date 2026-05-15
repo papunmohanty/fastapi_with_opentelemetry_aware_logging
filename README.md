@@ -209,5 +209,4 @@ This repository is useful when you want:
 - log-based span creation without explicit `with` blocks
 - easy-to-understand code for FastAPI and OTEL
 - good documentation for developers and operators
-
-If you want, I can also add a dedicated example section for a fully managed tracing exporter and production-ready log formatting.
+- pep8 standard codebase with commands to apply those features(check those commands in `Makefile` 😉)

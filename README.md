@@ -1,4 +1,7 @@
+
 # A Sample FastAPI App with OpenTelemetry-Aware Logging
+
+![FastAPI with OpenTelemetry Logging Integration](docs/assets/fastapi_logger_otel_integration.jpg)
 
 Welcome to this sample FastAPI repository. This project demonstrates how to build a lightweight Python app that:
 

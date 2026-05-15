@@ -44,7 +44,9 @@ from typing import Any
 
 from opentelemetry import trace
 
-TRACE_FORMAT = "%(asctime)s %(levelname)s %(name)s trace=%(trace_id)s span=%(span_id)s %(message)s"
+TRACE_FORMAT = (
+    "%(asctime)s %(levelname)s %(name)s trace=%(trace_id)s span=%(span_id)s %(message)s"
+)
 
 
 class TraceContextFilter(logging.Filter):
@@ -127,33 +129,121 @@ class TracedLoggerAdapter(logging.LoggerAdapter):
                 span_name = logging.getLevelName(level).lower()
             if span_attributes is None:
                 span_attributes = {}
-            with self._tracer.start_as_current_span(span_name, attributes=span_attributes):
+            with self._tracer.start_as_current_span(
+                span_name, attributes=span_attributes
+            ):
                 super().log(level, msg, *args, **kwargs)
         else:
             super().log(level, msg, *args, **kwargs)
 
-    def debug(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
-        self._log_with_optional_span(logging.DEBUG, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+    def debug(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        self._log_with_optional_span(
+            logging.DEBUG,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
-    def info(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
-        self._log_with_optional_span(logging.INFO, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+    def info(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        self._log_with_optional_span(
+            logging.INFO,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
-    def warning(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
-        self._log_with_optional_span(logging.WARNING, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+    def warning(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        self._log_with_optional_span(
+            logging.WARNING,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
-    def error(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
-        self._log_with_optional_span(logging.ERROR, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+    def error(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        self._log_with_optional_span(
+            logging.ERROR,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
-    def critical(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
-        self._log_with_optional_span(logging.CRITICAL, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+    def critical(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        self._log_with_optional_span(
+            logging.CRITICAL,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
-    def exception(self, msg: str, *args: Any, span_name: str | None = None, span_attributes: dict[str, Any] | None = None, **kwargs: Any) -> None:
+    def exception(
+        self,
+        msg: str,
+        *args: Any,
+        span_name: str | None = None,
+        span_attributes: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
         """Log an exception and include traceback information."""
         kwargs.setdefault("exc_info", True)
-        self._log_with_optional_span(logging.ERROR, msg, *args, span_name=span_name, span_attributes=span_attributes, **kwargs)
+        self._log_with_optional_span(
+            logging.ERROR,
+            msg,
+            *args,
+            span_name=span_name,
+            span_attributes=span_attributes,
+            **kwargs,
+        )
 
 
-def get_logger(name: str = "roll-dice", level: int = logging.INFO, auto_start_spans: bool = False) -> TracedLoggerAdapter:
+def get_logger(
+    name: str = "roll-dice", level: int = logging.INFO, auto_start_spans: bool = False
+) -> TracedLoggerAdapter:
     """Create and return an OpenTelemetry-capable logger adapter.
 
     Args:

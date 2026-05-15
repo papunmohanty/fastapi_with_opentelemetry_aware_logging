@@ -32,3 +32,12 @@ docker-run:  # Run Jaeger using docker command
 	-p 4318:4318 \
 	-p 9411:9411 \
 	jaegertracing/all-in-one:latest
+
+qc: # Quality check for the codebase
+	uv run ruff check .
+
+qc-fix: # Quality check and auto-fix for the codebase
+	uv run ruff check --fix .
+
+fmt:  # Format as per pep8 guidelines
+	uv run ruff format .
